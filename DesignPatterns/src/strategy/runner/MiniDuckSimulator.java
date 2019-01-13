@@ -1,8 +1,8 @@
-package strategy.ducks.runner;
+package strategy.runner;
 
 import strategy.ducks.Duck;
 import strategy.ducks.ModelDuck;
-import strategy.ducks.behaviour.FlyRocketPowered;
+import strategy.behaviour.FlyRocketPowered;
 
 public class MiniDuckSimulator {
     public static void main(String[] args) {
