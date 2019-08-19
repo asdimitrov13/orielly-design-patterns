@@ -1,5 +1,6 @@
 package observer.weather.display;
 
+import observer.weather.data.WeatherData;
 import observer.weather.util.Subject;
 import observer.weather.util.Observer;
 
@@ -20,9 +21,12 @@ public class CurrentConditionsDisplay implements Display, Observer {
     }
 
     @Override
-    public void update(float temperature, float humidity, float pressure) {
-        this.temperature = temperature;
-        this.humidity = humidity;
-        display();
+    public void update(Subject sub, Object ob) {
+        if (sub instanceof WeatherData) {
+            WeatherData data = (WeatherData) sub;
+            this.temperature = data.getTemperature();
+            this.humidity = data.getHumidity();
+            display();
+        }
     }
 }

@@ -2,6 +2,7 @@ package observer.weather.display;
 
 import observer.weather.data.WeatherData;
 import observer.weather.util.Observer;
+import observer.weather.util.Subject;
 
 
 public class StatisticsDisplay implements Observer, Display {
@@ -16,19 +17,24 @@ public class StatisticsDisplay implements Observer, Display {
 		weatherData.registerObserver(this);
 	}
 
-	public void update(float temp, float humidity, float pressure) {
-		tempSum += temp;
-		numReadings++;
+	public void update(Subject sub, Object ob) {
+		if (sub instanceof WeatherData) {
+			WeatherData data = (WeatherData) sub;
+			float temp = data.getTemperature();
 
-		if (temp > maxTemp) {
-			maxTemp = temp;
+			tempSum += temp;
+			numReadings++;
+
+			if (temp > maxTemp) {
+				maxTemp = temp;
+			}
+
+			if (temp < minTemp) {
+				minTemp = temp;
+			}
+
+			display();
 		}
-
-		if (temp < minTemp) {
-			minTemp = temp;
-		}
-
-		display();
 	}
 
 	public void display() {
