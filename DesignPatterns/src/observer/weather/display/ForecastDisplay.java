@@ -4,17 +4,15 @@ import observer.weather.data.WeatherData;
 import observer.weather.util.Observer;
 import observer.weather.util.Subject;
 
-import java.util.WeakHashMap;
-
 
 public class ForecastDisplay implements Observer, Display {
 	private float currentPressure = 29.92f;
 	private float lastPressure;
-	private WeatherData weatherData;
+	private Subject subject;
 
-	public ForecastDisplay(WeatherData weatherData) {
-		this.weatherData = weatherData;
-		weatherData.registerObserver(this);
+	public ForecastDisplay(WeatherData subject) {
+		this.subject = subject;
+		subject.registerObserver(this);
 	}
 
 	public void update(Subject sub, Object ob) {

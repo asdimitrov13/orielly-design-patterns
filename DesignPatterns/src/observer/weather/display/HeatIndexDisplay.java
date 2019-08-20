@@ -5,14 +5,14 @@ import observer.weather.util.Observer;
 import observer.weather.util.Subject;
 
 public class HeatIndexDisplay implements Display, Observer {
-    private Subject weatherData;
+    private Subject subject;
     private float temperature;
     private float humidity;
     private float heatIndex;
 
-    public HeatIndexDisplay(Subject weatherData) {
-        this.weatherData = weatherData;
-        weatherData.registerObserver(this);
+    public HeatIndexDisplay(Subject subject) {
+        this.subject = subject;
+        subject.registerObserver(this);
     }
 
     @Override

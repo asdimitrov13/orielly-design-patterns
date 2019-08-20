@@ -10,11 +10,11 @@ public class StatisticsDisplay implements Observer, Display {
 	private float minTemp = 200;
 	private float tempSum= 0.0f;
 	private int numReadings;
-	private WeatherData weatherData;
+	private Subject subject;
 
-	public StatisticsDisplay(WeatherData weatherData) {
-		this.weatherData = weatherData;
-		weatherData.registerObserver(this);
+	public StatisticsDisplay(WeatherData subject) {
+		this.subject = subject;
+		subject.registerObserver(this);
 	}
 
 	public void update(Subject sub, Object ob) {
